@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BsTrash, BsBookmarkCheck, BsBookmarkCheckFill } from "react-icons/bs";
-import loadingAnimation from "./assets/loadingAnimation.gif";
 
 import "./App.css";
 
@@ -60,14 +59,6 @@ const App = () => {
         setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
     };
 
-    if (loading) {
-        return (
-            <div className="Loading">
-                <img src={loadingAnimation} alt="carregando" />
-            </div>
-        );
-    }
-
     const handleEdit = async (todo) => {
         todo.done = !todo.done;
 
@@ -83,6 +74,10 @@ const App = () => {
             prevState.map((t) => (t.id === data.id ? (t = data) : t))
         );
     };
+
+    if (loading) {
+        return <p>Carregando...</p>;
+    }
 
     return (
         <div className="App">
